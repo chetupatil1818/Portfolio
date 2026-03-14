@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Redirect all routes to Next.js handler
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/__nextjs_ssr"
+  status = 200

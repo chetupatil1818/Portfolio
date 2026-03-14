@@ -2,11 +2,21 @@
   command = "npm run build"
   publish = ".next"
 
+[build.environment]
+  NEXT_VERSION = "16.1.6"
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# Redirect all routes to Next.js handler
+# Handle client-side routing
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/__nextjs_ssr"
+  to = "/index.html"
   status = 200
+
+# API routes
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/next_api/:splat"
+  status = 200
+  force = true

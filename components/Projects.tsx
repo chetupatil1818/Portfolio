@@ -191,7 +191,7 @@ const Projects = () => {
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="https://github.com/yourusername"
+            href="https://github.com/chetupatil1818"
             target="_blank"
             className="btn-outline inline-flex items-center"
           >

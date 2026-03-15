@@ -6,6 +6,47 @@ import { useTheme } from "next-themes"
 import { Moon, Sun, Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
+// Custom Hacker Icon mimicking your image
+const HackerLogo = ({ size = 36, className = "" }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    className={className} 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      {/* This mask cuts out the face hole and a gap around the laptop */}
+      <mask id="hackerMask">
+        <rect width="24" height="24" fill="white" />
+        <ellipse cx="12" cy="9" rx="3.5" ry="4.5" fill="black" />
+        <rect x="3.5" y="14.5" width="17" height="9" rx="1.5" fill="black" />
+      </mask>
+      {/* This mask cuts out the tiny skull on the back of the laptop */}
+      <mask id="laptopMask">
+        <rect width="24" height="24" fill="white" />
+        <circle cx="12" cy="18.5" r="1.2" fill="black" />
+        <path d="M11 20h2v1h-2z" fill="black" />
+      </mask>
+    </defs>
+
+    {/* Hooded Body */}
+    <path 
+      mask="url(#hackerMask)" 
+      d="M12 2C8.13 2 5 5.13 5 9v2.26c-2.29.89-4 3.12-4 5.74V22h22v-5c0-2.62-1.71-4.85-4-5.74V9c0-3.87-3.13-7-7-7z" 
+      fill="currentColor" 
+    />
+    
+    {/* Laptop */}
+    <rect 
+      mask="url(#laptopMask)" 
+      x="5" y="16" width="14" height="6" rx="0.5" 
+      fill="currentColor" 
+    />
+  </svg>
+)
+
 const Navbar = () => {
   const [mounted, setMounted] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
@@ -37,14 +78,21 @@ const Navbar = () => {
     }`}>
       <div className="container">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          
+          {/* Logo - Custom Hacker Icon with CP below */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-3xl font-bold"
           >
-            <span className="text-primary">C</span>
-            <span className="text-secondary dark:text-white">hetan</span>
+            <Link href="#home" className="flex flex-col items-center justify-center group mt-1">
+              <HackerLogo 
+                size={38} 
+                className="text-primary transition-transform duration-300 group-hover:scale-110 drop-shadow-sm" 
+              />
+              <span className="text-[11px] font-bold mt-1 text-secondary dark:text-white tracking-[0.25em]">
+                CP
+              </span>
+            </Link>
           </motion.div>
 
           {/* Desktop Menu */}
